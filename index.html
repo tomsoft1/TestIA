@@ -7,18 +7,48 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Solution Finder Climalife</h1>
+    <header>
+        <div class="logo">Matelex</div>
+    </header>
+    <div class="wave-container">
+        <div class="wave"></div>
+    </div>
+    <nav class="progress-nav">
+        <div class="progress-step active">
+            <span class="step-number">1</span>
+            <span class="step-label">Centrale à Équiper</span>
+        </div>
+        <div class="progress-step">
+            <span class="step-number">2</span>
+            <span class="step-label">Énergie</span>
+        </div>
+        <div class="progress-step">
+            <span class="step-number">3</span>
+            <span class="step-label">Spécificités</span>
+        </div>
+        <div class="progress-step">
+            <span class="step-number">4</span>
+            <span class="step-label">Récapitulatif</span>
+        </div>
+    </nav>
+    <main class="container">
         <div id="question-container">
             <div id="question" class="question-box"></div>
             <div id="options" class="options-container"></div>
         </div>
         <div id="navigation">
-            <button id="prevBtn" onclick="previousQuestion()" style="display: none;">Précédent</button>
-            <button id="nextBtn" onclick="nextQuestion()" style="display: none;">Suivant</button>
-            <button id="submitBtn" onclick="generateReport()" style="display: none;">Générer le rapport</button>
+            <button id="prevBtn" class="nav-button">Précédent</button>
+            <button id="nextBtn" class="nav-button suivant">Suivant</button>
+            <button id="submitBtn" class="nav-button">Générer le rapport</button>
         </div>
-    </div>
+    </main>
+    <section class="report-section">
+        <h2>Mon rapport</h2>
+        <div id="report-content" class="report-content">
+            <p class="no-data">Aucune réponse enregistrée</p>
+        </div>
+        <button id="restartBtn" class="restart-button">Recommencer</button>
+    </section>
     <script src="script.js"></script>
 </body>
 </html>

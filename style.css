@@ -1,142 +1,246 @@
+:root {
+    --matelex-blue: #002A3A;
+    --matelex-turquoise: #26B2A2;
+    --white: #FFFFFF;
+    --light-gray: #F8F9FE;
+    --text-gray: #666666;
+}
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
+    padding: 0;
+    background-color: var(--light-gray);
+    color: var(--text-gray);
+}
+
+header {
+    background-color: var(--matelex-blue);
     padding: 20px;
-    background-color: #002A3A;
-    color: #FFFFFF;
+    height: 40px;
+}
+
+.logo {
+    color: var(--white);
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.wave-container {
+    background-color: var(--matelex-blue);
+    height: 100px;
+    position: relative;
+    overflow: hidden;
+}
+
+.wave {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    background: var(--light-gray);
+    clip-path: path('M0,100 C300,30 700,120 1920,30 L1920,100 L0,100 Z');
+}
+
+.progress-nav {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+    max-width: 800px;
+    margin: -50px auto 30px;
+    position: relative;
+    z-index: 1;
+}
+
+.progress-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+    max-width: 150px;
+    position: relative;
+}
+
+.progress-step::after {
+    content: '';
+    position: absolute;
+    top: 15px;
+    left: 60%;
+    width: 80%;
+    height: 2px;
+    background-color: #E0E0E0;
+}
+
+.progress-step:last-child::after {
+    display: none;
+}
+
+.step-number {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #E0E0E0;
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.progress-step.active .step-number {
+    background-color: var(--matelex-turquoise);
+}
+
+.step-label {
+    font-size: 14px;
+    color: var(--text-gray);
+    text-align: center;
 }
 
 .container {
     max-width: 800px;
     margin: 0 auto;
-    background-color: rgba(255, 255, 255, 0.1);
-    padding: 20px;
+    padding: 30px;
+    background-color: var(--white);
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
-
-h1 {
-    text-align: center;
-    color: #26B2A2;
-    margin-bottom: 30px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .question-box {
-    background-color: rgba(38, 178, 162, 0.1);
-    padding: 20px;
-    border-radius: 6px;
-    margin-bottom: 20px;
-    font-size: 1.1em;
-    color: #FFFFFF;
-    border: 1px solid rgba(38, 178, 162, 0.3);
+    font-size: 18px;
+    color: var(--matelex-blue);
+    font-weight: bold;
+    margin-bottom: 30px;
 }
 
 .options-container {
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    margin-bottom: 20px;
-    padding: 10px;
+    gap: 15px;
+}
+
+.input-field {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #E0E0E0;
+    border-radius: 4px;
+    font-size: 16px;
+    color: var(--text-gray);
+}
+
+.input-field:focus {
+    border-color: var(--matelex-turquoise);
+    outline: none;
 }
 
 .nav-button {
     padding: 12px 24px;
     border: none;
     border-radius: 4px;
-    background-color: #26B2A2;
-    color: white;
+    font-size: 16px;
     cursor: pointer;
-    transition: background-color 0.3s, transform 0.1s;
-    font-size: 1em;
+    transition: all 0.3s ease;
+}
+
+.nav-button.suivant {
+    background-color: var(--matelex-blue);
+    color: var(--white);
+}
+
+.nav-button:not(.suivant) {
+    background-color: var(--white);
+    color: var(--matelex-blue);
+    border: 1px solid var(--matelex-blue);
 }
 
 .nav-button:hover {
-    background-color: #1D8A7D;
     transform: translateY(-1px);
-}
-
-.nav-button:disabled {
-    background-color: rgba(38, 178, 162, 0.3);
-    cursor: not-allowed;
-    transform: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 #navigation {
     display: flex;
     justify-content: space-between;
-    gap: 10px;
-    margin-top: 20px;
+    margin-top: 30px;
+    gap: 15px;
+}
+
+.report-section {
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 20px;
+}
+
+.report-section h2 {
+    color: var(--matelex-blue);
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.report-content {
+    background-color: var(--white);
+    padding: 20px;
+    border-radius: 8px;
+    min-height: 100px;
+    margin-bottom: 20px;
+}
+
+.no-data {
+    color: var(--text-gray);
+    text-align: center;
+    font-style: italic;
+}
+
+.restart-button {
+    width: 100%;
+    padding: 12px;
+    background-color: transparent;
+    border: 1px solid var(--matelex-blue);
+    color: var(--matelex-blue);
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.restart-button:hover {
+    background-color: rgba(0, 42, 58, 0.05);
 }
 
 .option-button {
     padding: 12px;
     text-align: left;
-    background-color: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(38, 178, 162, 0.3);
-    color: #FFFFFF;
+    background-color: var(--white);
+    border: 1px solid #E0E0E0;
+    color: var(--text-gray);
     border-radius: 4px;
     cursor: pointer;
     transition: all 0.3s ease;
-    font-size: 1em;
+    font-size: 16px;
 }
 
 .option-button:hover {
-    background-color: rgba(38, 178, 162, 0.2);
-    transform: translateY(-1px);
+    border-color: var(--matelex-turquoise);
 }
 
 .option-button.selected {
-    background-color: #26B2A2;
-    color: white;
-    border-color: #1D8A7D;
-}
-
-.input-field {
-    width: 100%;
-    padding: 12px;
-    border: 2px solid rgba(38, 178, 162, 0.3);
-    border-radius: 4px;
-    font-size: 1em;
-    transition: border-color 0.3s;
-    box-sizing: border-box;
-    background-color: rgba(255, 255, 255, 0.1);
-    color: #FFFFFF;
-}
-
-.input-field:focus {
-    border-color: #26B2A2;
-    outline: none;
-    background-color: rgba(255, 255, 255, 0.15);
-}
-
-.input-field::placeholder {
-    color: rgba(255, 255, 255, 0.7);
-}
-
-.input-field::-webkit-inner-spin-button,
-.input-field::-webkit-outer-spin-button {
-    opacity: 1;
-}
-
-select.input-field {
-    appearance: none;
-    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
-    background-repeat: no-repeat;
-    background-position: right 1rem center;
-    background-size: 1em;
-    padding-right: 2.5em;
+    background-color: var(--matelex-blue);
+    color: var(--white);
+    border-color: var(--matelex-blue);
 }
 
 .motor-container {
     margin-bottom: 15px;
-    padding: 10px;
-    border: 1px solid #e0e0e0;
+    padding: 15px;
+    border: 1px solid #E0E0E0;
     border-radius: 4px;
-    background-color: #f8f9fa;
 }
 
 .motor-label {
-    margin-bottom: 5px;
-    color: #2c3e50;
+    margin-bottom: 8px;
+    color: var(--matelex-blue);
     font-weight: bold;
 }
