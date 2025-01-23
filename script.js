@@ -53,22 +53,6 @@ const questions = [
         required: true
     },
     {
-        id: 51,
-        text: "Type de connexion",
-        type: "select",
-        options: ["Sans-Fil", "Filaire"],
-        condition: (answers) => answers[5] === true,
-        required: true
-    },
-    {
-        id: 52,
-        text: "Module",
-        type: "select",
-        options: ["Module temp LoRa", "Module standard"],
-        condition: (answers) => answers[5] === true,
-        required: true
-    },
-    {
         id: 6,
         text: "Avez-vous besoin d'une antenne déportée 4G ?",
         type: "select",

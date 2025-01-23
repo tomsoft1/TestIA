@@ -11,14 +11,12 @@
         <h1>Solution Finder Climalife</h1>
         <div id="question-container">
             <div id="question" class="question-box"></div>
-            <div id="options" class="options-container">
-                <input type="number" id="numberInput" class="input-field" min="1" max="10" style="display: none;">
-            </div>
+            <div id="options" class="options-container"></div>
         </div>
         <div id="navigation">
-            <button id="prevBtn" class="nav-button">Précédent</button>
-            <button id="nextBtn" class="nav-button">Suivant</button>
-            <button id="submitBtn" class="nav-button">Générer le rapport</button>
+            <button id="prevBtn" onclick="previousQuestion()" style="display: none;">Précédent</button>
+            <button id="nextBtn" onclick="nextQuestion()" style="display: none;">Suivant</button>
+            <button id="submitBtn" onclick="generateReport()" style="display: none;">Générer le rapport</button>
         </div>
     </div>
     <script src="script.js"></script>
