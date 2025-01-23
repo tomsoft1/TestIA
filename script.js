@@ -86,14 +86,8 @@ const questions = [
 
 function initializeApp() {
     displayQuestion(currentQuestionIndex);
-    setupNavigationButtons();
-}
-
-function setupNavigationButtons() {
-    document.getElementById('prevBtn').onclick = previousQuestion;
-    document.getElementById('nextBtn').onclick = nextQuestion;
-    document.getElementById('submitBtn').onclick = generateReport;
-    updateNavigationButtons();
+    document.getElementById('prevBtn').style.display = 'none';
+    document.getElementById('nextBtn').style.display = 'block';
 }
 
 function displayQuestion(index) {
@@ -108,83 +102,75 @@ function displayQuestion(index) {
 
     const questionElement = document.getElementById('question');
     const optionsElement = document.getElementById('options');
-    const numberInput = document.getElementById('numberInput');
     
     questionElement.textContent = question.text;
     optionsElement.innerHTML = '';
 
-    if (question.type === 'number') {
-        numberInput.style.display = 'block';
-        numberInput.min = question.min;
-        numberInput.max = question.max;
-        numberInput.value = answers[question.id] || '';
-        numberInput.onchange = (e) => {
-            answers[question.id] = parseInt(e.target.value);
-            updateNavigationButtons();
-        };
-        optionsElement.appendChild(numberInput);
-    } else {
-        numberInput.style.display = 'none';
-        
-        switch (question.type) {
-            case 'select':
-                question.options.forEach(option => {
-                    const button = document.createElement('button');
-                    button.className = `option-button ${answers[question.id] === option ? 'selected' : ''}`;
-                    button.textContent = option;
-                    button.onclick = () => {
-                        answers[question.id] = option;
-                        updateOptions();
-                        updateNavigationButtons();
-                    };
-                    optionsElement.appendChild(button);
-                });
-                break;
+    switch (question.type) {
+        case 'number':
+            const input = document.createElement('input');
+            input.type = 'number';
+            input.min = question.min;
+            input.max = question.max;
+            input.className = 'input-field';
+            input.value = answers[question.id] || '';
+            input.onchange = (e) => {
+                answers[question.id] = parseInt(e.target.value);
+                updateNavigationButtons();
+            };
+            optionsElement.appendChild(input);
+            break;
 
-            case 'boolean':
-                ['Oui', 'Non'].forEach(option => {
-                    const button = document.createElement('button');
-                    button.className = `option-button ${answers[question.id] === (option === 'Oui') ? 'selected' : ''}`;
-                    button.textContent = option;
-                    button.onclick = () => {
-                        answers[question.id] = option === 'Oui';
-                        updateOptions();
-                        updateNavigationButtons();
-                    };
-                    optionsElement.appendChild(button);
-                });
-                break;
+        case 'select':
+            question.options.forEach(option => {
+                const button = document.createElement('button');
+                button.className = `option-button ${answers[question.id] === option ? 'selected' : ''}`;
+                button.textContent = option;
+                button.onclick = () => {
+                    answers[question.id] = option;
+                    updateOptions();
+                    updateNavigationButtons();
+                };
+                optionsElement.appendChild(button);
+            });
+            break;
 
-            case 'multiMotor':
-                const numMotors = answers[12] || 0;
-                for (let i = 1; i <= numMotors; i++) {
-                    const motorContainer = document.createElement('div');
-                    motorContainer.className = 'motor-container';
-                    
-                    const motorLabel = document.createElement('div');
-                    motorLabel.className = 'motor-label';
-                    motorLabel.textContent = `Moteur ${i}:`;
-                    
-                    const select = document.createElement('select');
-                    select.className = 'input-field';
-                    ['1/3 TI', '1/2 TI'].forEach(option => {
-                        const optionElement = document.createElement('option');
-                        optionElement.value = option;
-                        optionElement.textContent = option;
-                        select.appendChild(optionElement);
-                    });
-                    select.value = answers[question.id]?.[i] || '1/3 TI';
-                    select.onchange = (e) => {
-                        answers[question.id] = {...(answers[question.id] || {}), [i]: e.target.value};
-                        updateNavigationButtons();
-                    };
-                    
-                    motorContainer.appendChild(motorLabel);
-                    motorContainer.appendChild(select);
-                    optionsElement.appendChild(motorContainer);
-                }
-                break;
-        }
+        case 'boolean':
+            ['Oui', 'Non'].forEach(option => {
+                const button = document.createElement('button');
+                button.className = `option-button ${answers[question.id] === (option === 'Oui') ? 'selected' : ''}`;
+                button.textContent = option;
+                button.onclick = () => {
+                    answers[question.id] = option === 'Oui';
+                    updateOptions();
+                    updateNavigationButtons();
+                };
+                optionsElement.appendChild(button);
+            });
+            break;
+
+        case 'multiMotor':
+            const numMotors = answers[12] || 0;
+            for (let i = 1; i <= numMotors; i++) {
+                const motorLabel = document.createElement('div');
+                motorLabel.textContent = `Moteur ${i}:`;
+                const select = document.createElement('select');
+                select.className = 'input-field';
+                ['1/3 TI', '1/2 TI'].forEach(option => {
+                    const optionElement = document.createElement('option');
+                    optionElement.value = option;
+                    optionElement.textContent = option;
+                    select.appendChild(optionElement);
+                });
+                select.value = answers[question.id]?.[i] || '1/3 TI';
+                select.onchange = (e) => {
+                    answers[question.id] = {...(answers[question.id] || {}), [i]: e.target.value};
+                    updateNavigationButtons();
+                };
+                optionsElement.appendChild(motorLabel);
+                optionsElement.appendChild(select);
+            }
+            break;
     }
 
     updateNavigationButtons();
@@ -219,17 +205,8 @@ function updateNavigationButtons() {
 
     const currentQuestion = questions[currentQuestionIndex];
     const hasValidAnswer = answers[currentQuestion.id] !== undefined;
-    
-    if (currentQuestion.type === 'number') {
-        const numberInput = document.getElementById('numberInput');
-        const value = parseInt(numberInput.value);
-        const isValid = !isNaN(value) && value >= currentQuestion.min && value <= currentQuestion.max;
-        nextBtn.disabled = !isValid;
-        submitBtn.disabled = !isValid;
-    } else {
-        nextBtn.disabled = !hasValidAnswer;
-        submitBtn.disabled = !hasValidAnswer;
-    }
+    nextBtn.disabled = !hasValidAnswer;
+    submitBtn.disabled = !hasValidAnswer;
 }
 
 function previousQuestion() {
