@@ -2,31 +2,33 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 20px;
-    background-color: #f5f5f5;
+    background-color: #002A3A;
+    color: #FFFFFF;
 }
 
 .container {
     max-width: 800px;
     margin: 0 auto;
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.1);
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 h1 {
     text-align: center;
-    color: #2c3e50;
+    color: #26B2A2;
     margin-bottom: 30px;
 }
 
 .question-box {
-    background-color: #f8f9fa;
+    background-color: rgba(38, 178, 162, 0.1);
     padding: 20px;
     border-radius: 6px;
     margin-bottom: 20px;
     font-size: 1.1em;
-    color: #2c3e50;
+    color: #FFFFFF;
+    border: 1px solid rgba(38, 178, 162, 0.3);
 }
 
 .options-container {
@@ -41,7 +43,7 @@ h1 {
     padding: 12px 24px;
     border: none;
     border-radius: 4px;
-    background-color: #3498db;
+    background-color: #26B2A2;
     color: white;
     cursor: pointer;
     transition: background-color 0.3s, transform 0.1s;
@@ -49,12 +51,12 @@ h1 {
 }
 
 .nav-button:hover {
-    background-color: #2980b9;
+    background-color: #1D8A7D;
     transform: translateY(-1px);
 }
 
 .nav-button:disabled {
-    background-color: #bdc3c7;
+    background-color: rgba(38, 178, 162, 0.3);
     cursor: not-allowed;
     transform: none;
 }
@@ -69,9 +71,9 @@ h1 {
 .option-button {
     padding: 12px;
     text-align: left;
-    background-color: #ecf0f1;
-    border: 1px solid #bdc3c7;
-    color: #2c3e50;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(38, 178, 162, 0.3);
+    color: #FFFFFF;
     border-radius: 4px;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -79,29 +81,36 @@ h1 {
 }
 
 .option-button:hover {
-    background-color: #d5dbdb;
+    background-color: rgba(38, 178, 162, 0.2);
     transform: translateY(-1px);
 }
 
 .option-button.selected {
-    background-color: #3498db;
+    background-color: #26B2A2;
     color: white;
-    border-color: #2980b9;
+    border-color: #1D8A7D;
 }
 
 .input-field {
     width: 100%;
     padding: 12px;
-    border: 2px solid #bdc3c7;
+    border: 2px solid rgba(38, 178, 162, 0.3);
     border-radius: 4px;
     font-size: 1em;
     transition: border-color 0.3s;
     box-sizing: border-box;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #FFFFFF;
 }
 
 .input-field:focus {
-    border-color: #3498db;
+    border-color: #26B2A2;
     outline: none;
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+.input-field::placeholder {
+    color: rgba(255, 255, 255, 0.7);
 }
 
 .input-field::-webkit-inner-spin-button,
